@@ -61,6 +61,19 @@ export function Button(props: ButtonAsLink | ButtonAsButton) {
         </a>
       );
     }
+    // Static files (e.g. the CV PDF) — plain anchor so the browser downloads
+    // it instead of attempting client-side route navigation.
+    if (/\.[a-z0-9]+$/i.test(props.href)) {
+      return (
+        <a
+          {...(rest as React.AnchorHTMLAttributes<HTMLAnchorElement>)}
+          className={classes}
+          download
+        >
+          {children}
+        </a>
+      );
+    }
     return (
       <Link
         {...(rest as Omit<React.ComponentProps<typeof Link>, "className">)}

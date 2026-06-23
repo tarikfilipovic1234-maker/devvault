@@ -14,9 +14,6 @@ export const metadata: Metadata = pageMetadata({
   path: "/resume",
 });
 
-// Flip to "1" once /public/cv/Tarik-Filipovic-CV.pdf exists to show the embed.
-const HAS_CV = process.env.NEXT_PUBLIC_HAS_CV === "1";
-
 export default function ResumePage() {
   const work = experience.filter((e) => e.kind !== "highlight");
 
@@ -86,22 +83,11 @@ export default function ResumePage() {
         {/* PDF preview */}
         <aside>
           <div className="glass sticky top-24 overflow-hidden rounded-2xl p-3">
-            {HAS_CV ? (
-              <iframe
-                src={`${site.cvPath}#view=FitH`}
-                title={`${site.name} CV`}
-                className="h-[640px] w-full rounded-xl bg-white"
-              />
-            ) : (
-              <div className="flex h-[640px] flex-col items-center justify-center gap-4 rounded-xl border border-dashed border-line px-6 text-center">
-                <p className="text-sm text-muted">
-                  PDF preview appears here once the CV is added.
-                </p>
-                <Button href={site.cvPath} variant="secondary" size="sm">
-                  <DownloadIcon /> Download CV
-                </Button>
-              </div>
-            )}
+            <iframe
+              src={`${site.cvPath}#view=FitH`}
+              title={`${site.name} CV`}
+              className="h-[640px] w-full rounded-xl bg-white"
+            />
           </div>
         </aside>
       </div>
