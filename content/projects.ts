@@ -26,7 +26,7 @@ export const projects: Project[] = [
     ],
     status: "In Progress",
     featured: true,
-    order: 50,
+    order: 20,
     thumbnail: "/projects/darceflow.png",
     overview:
       "Darceflow is a multi-tenant SaaS platform that gives Brazilian Jiu-Jitsu academies a single dashboard for running the business side of the gym: members, attendance, belt promotions, class schedules and recurring billing.",
@@ -70,7 +70,7 @@ export const projects: Project[] = [
     ],
     status: "Completed",
     featured: true,
-    order: 40,
+    order: 50,
     thumbnail: "/projects/enamel.png",
     overview:
       "Enamel is a bilingual dental-clinic website backed by a working appointment-booking engine. Patients browse services and book real time slots; staff manage appointments and availability through an admin area.",
@@ -158,7 +158,7 @@ export const projects: Project[] = [
     ],
     status: "Completed",
     featured: false,
-    order: 20,
+    order: 40,
     thumbnail: "/projects/usa2bih.png",
     overview:
       "USA2BIH helps buyers import vehicles from the United States to Bosnia. It combines a vehicle catalog with a landed-cost calculator that estimates the true delivered price — customs duties and VAT converted into BAM and EUR — plus a comparison tool, a user dashboard and an admin panel.",
