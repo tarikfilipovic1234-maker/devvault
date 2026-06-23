@@ -157,7 +157,7 @@ export const projects: Project[] = [
       "Admin panel with tested business logic (Vitest + CI)",
     ],
     status: "Completed",
-    featured: false,
+    featured: true,
     order: 40,
     thumbnail: "/projects/usa2bih.png",
     overview:
