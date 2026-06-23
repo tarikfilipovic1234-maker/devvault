@@ -1,18 +1,30 @@
 import type { ExperienceEntry } from "@/lib/types";
 
 /**
- * Experience timeline. The "highlight" entries are derived from real shipped
- * projects. The "work" and "education" entries are PLACEHOLDERS — replace the
- * organization names, periods and descriptions with real history.
+ * Experience timeline, reverse-chronological. Work + education are from the
+ * owner's CV; "highlight" entries surface real shipped projects.
  */
 export const experience: ExperienceEntry[] = [
+  {
+    kind: "work",
+    title: "Student Intern — Full-Stack Development",
+    organization: "Assured, Sarajevo",
+    period: "Aug 2025 — May 2026",
+    description:
+      "Contributed to frontend and backend tasks on real web applications, working with the development team across assigned features and ongoing project requirements.",
+    highlights: [
+      "Built and maintained web application features (frontend & backend)",
+      "Helped build and improve a Playwright end-to-end testing framework",
+      "Participated in testing and debugging to improve performance and reliability",
+    ],
+  },
   {
     kind: "highlight",
     title: "Built Darceflow — Multi-tenant BJJ SaaS",
     organization: "Personal project",
     period: "2026 — Present",
     description:
-      "Designing and building a multi-tenant SaaS dashboard for Brazilian Jiu-Jitsu gyms with Stripe billing, attendance and scheduling — with strict per-tenant data isolation.",
+      "Designing a multi-tenant SaaS dashboard for Brazilian Jiu-Jitsu gyms with Stripe billing, attendance and scheduling — with strict per-tenant data isolation.",
     highlights: [
       "Tenant-scoped data access enforced at the data layer",
       "Stripe subscription billing reconciled via webhooks",
@@ -20,42 +32,30 @@ export const experience: ExperienceEntry[] = [
   },
   {
     kind: "highlight",
-    title: "Shipped Enamel — Dental booking platform",
-    organization: "Personal project",
-    period: "2025",
-    description:
-      "Built a bilingual dental-clinic site with a real appointment-booking engine: availability computation, staff time-off and transactional overlap prevention, plus a staff admin area.",
-    highlights: [
-      "Server-side, transactional booking to guarantee no double-booking",
-      "Full i18n and transactional email via Resend",
-    ],
-  },
-  {
-    kind: "highlight",
-    title: "Shipped Voltra & USA2BIH",
+    title: "Shipped Enamel, Voltra & USA2BIH",
     organization: "Personal projects",
     period: "2025",
     description:
-      "Delivered an e-commerce storefront (Voltra) with Stripe checkout, inventory holds and loyalty tiers, and a vehicle-import platform (USA2BIH) with a tested landed-cost calculator and CI.",
+      "Delivered a dental booking platform with a real availability engine (Enamel), an e-commerce storefront with Stripe checkout and inventory holds (Voltra), and a vehicle-import platform with a tested landed-cost calculator and CI (USA2BIH).",
     highlights: [
-      "Inventory holds to prevent overselling under concurrency",
+      "Server-side, transactional logic to prevent double-booking and overselling",
       "Unit-tested business logic with GitHub Actions CI",
     ],
   },
   {
-    kind: "work",
-    title: "Full-Stack Developer",
-    organization: "Replace with real role / freelance",
-    period: "Replace with period",
+    kind: "education",
+    title: "BSc Information Technology (in progress)",
+    organization: "International Burch University, Sarajevo",
+    period: "Oct 2023 — Present",
     description:
-      "Placeholder — replace with real professional experience: responsibilities, stack and impact, written for recruiters skimming quickly.",
+      "Second-year IT student building foundations in programming, databases, web development and software engineering, focused on practical full-stack skills.",
   },
   {
     kind: "education",
-    title: "Replace with degree / program",
-    organization: "Replace with institution",
-    period: "Replace with period",
+    title: "IT-focused secondary education",
+    organization: "First Gymnasium, Sarajevo",
+    period: "Sep 2019 — Jul 2023",
     description:
-      "Placeholder — replace with real education or relevant training.",
+      "IT-focused curriculum covering C++ programming, Android Studio, databases, and web development with HTML and CSS.",
   },
 ];

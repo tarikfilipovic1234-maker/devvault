@@ -193,7 +193,7 @@ export const projects: Project[] = [
     categories: ["Full-stack"],
     tech: ["C#", ".NET", "TypeScript", "React", "REST"],
     liveUrl: null,
-    repoUrl: "https://github.com/tarikfilipovic1234-maker/reactivity",
+    repoUrl: "https://github.com/tarikfilipovic1234-maker/Reactivity",
     keyFeatures: [
       "Layered .NET backend (API / Application / Domain / Persistence)",
       "CQRS-style application layer",
