@@ -18,7 +18,7 @@ export function ContactCTA() {
               <GradientText>Let&apos;s build it.</GradientText>
             </h2>
             <p className="mx-auto mt-5 max-w-xl text-lg leading-8 text-muted">
-              I&apos;m open to full-stack and front-end opportunities. The
+              I&apos;m open to full-stack, front-end and back-end opportunities. The
               fastest way to reach me is the form — or grab my CV.
             </p>
             <div className="mt-9 flex flex-wrap justify-center gap-3">

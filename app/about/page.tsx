@@ -58,7 +58,7 @@ export default function AboutPage() {
             <p>
               I care about clean architecture, accessibility, performance and
               the small interactions that make software feel considered. I&apos;m
-              looking for a full-stack or front-end role where I can keep raising
+              looking for a full-stack, front-end or back-end role where I can keep raising
               that bar.
             </p>
           </div>

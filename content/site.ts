@@ -19,6 +19,6 @@ export const site: SiteConfig = {
     email: "tarikfilipovic1234@gmail.com",
   },
   cvPath: "/cv/Tarik-Filipovic-CV.pdf",
-  photo: "/tarik.jpg",
+  photo: "/tarik.png",
   location: "Sarajevo, Bosnia & Herzegovina",
 };

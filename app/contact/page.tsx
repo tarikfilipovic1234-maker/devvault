@@ -14,7 +14,7 @@ import {
 
 export const metadata: Metadata = pageMetadata({
   title: "Contact",
-  description: `Get in touch with ${site.name} about full-stack and front-end opportunities.`,
+  description: `Get in touch with ${site.name} about full-stack, front-end and back-end opportunities.`,
   path: "/contact",
 });
 
