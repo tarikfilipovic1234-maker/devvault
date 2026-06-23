@@ -98,4 +98,8 @@ export interface SiteConfig {
   social: SocialLinks;
   /** Path under /public to the downloadable CV. */
   cvPath: string;
+  /** Path under /public to the profile photo. */
+  photo: string;
+  /** Home base, e.g. "Sarajevo, Bosnia & Herzegovina". */
+  location: string;
 }
