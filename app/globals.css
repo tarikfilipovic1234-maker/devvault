@@ -1,22 +1,203 @@
 @import "tailwindcss";
 
-/*
- * Minimal base for Milestone 1. The full dark/glass/electric-blue design-token
- * theme and utilities land in Milestone 2.
- */
-
+/* ──────────────────────────────────────────────────────────────────────────
+   Design tokens — dark / glass / electric-blue with purple gradient accents.
+   Exposed to Tailwind v4 via @theme so utilities like `bg-ink`, `text-accent`,
+   `font-display` are generated.
+   ────────────────────────────────────────────────────────────────────────── */
 @theme inline {
+  /* Surfaces */
+  --color-ink: #050609; /* matte-black base */
+  --color-midnight: #080a12; /* deep midnight */
+  --color-navy: #0b1326; /* deep navy surface */
+  --color-surface: #0e1730; /* raised surface / cards */
+  --color-line: #1b2742; /* hairline borders */
+
+  /* Accents */
+  --color-accent: #2e9bff; /* electric blue (primary) */
+  --color-accent-soft: #6cb8ff;
+  --color-accent-deep: #1f6fe0;
+  --color-violet: #8b5cf6; /* purple gradient accent */
+  --color-violet-soft: #a78bfa;
+
+  /* Text */
+  --color-foreground: #eef2f8; /* chrome white */
+  --color-muted: #93a1ba; /* secondary text */
+  --color-faint: #5d6b85; /* tertiary / captions */
+
+  /* Type */
+  --font-display: var(--font-sora);
   --font-sans: var(--font-geist-sans);
   --font-mono: var(--font-geist-mono);
 }
 
 :root {
-  --background: #0a0a0a;
-  --foreground: #ededed;
+  --background: var(--color-ink);
+  --foreground: var(--color-foreground);
+}
+
+/* ─── Base ─────────────────────────────────────────────────────────────── */
+* {
+  border-color: var(--color-line);
+}
+
+html {
+  scroll-behavior: smooth;
+  -webkit-text-size-adjust: 100%;
 }
 
 body {
-  background: var(--background);
-  color: var(--foreground);
-  font-family: var(--font-sans), Arial, Helvetica, sans-serif;
+  background: var(--color-ink);
+  color: var(--color-foreground);
+  font-family: var(--font-sans), system-ui, sans-serif;
+  -webkit-font-smoothing: antialiased;
+  text-rendering: optimizeLegibility;
+  overflow-x: hidden;
+}
+
+::selection {
+  background: color-mix(in oklab, var(--color-accent) 35%, transparent);
+  color: #fff;
+}
+
+/* Custom scrollbar */
+::-webkit-scrollbar {
+  width: 11px;
+  height: 11px;
+}
+::-webkit-scrollbar-track {
+  background: var(--color-ink);
+}
+::-webkit-scrollbar-thumb {
+  background: var(--color-line);
+  border: 3px solid var(--color-ink);
+  border-radius: 999px;
+}
+::-webkit-scrollbar-thumb:hover {
+  background: color-mix(in oklab, var(--color-accent) 55%, var(--color-line));
+}
+
+/* Visible, on-brand focus ring for keyboard users */
+:focus-visible {
+  outline: 2px solid var(--color-accent);
+  outline-offset: 2px;
+  border-radius: 4px;
+}
+
+/* ─── Reusable utilities ───────────────────────────────────────────────── */
+
+/* Glassmorphism surface */
+@utility glass {
+  background: color-mix(in oklab, var(--color-surface) 55%, transparent);
+  backdrop-filter: blur(14px) saturate(140%);
+  -webkit-backdrop-filter: blur(14px) saturate(140%);
+  border: 1px solid color-mix(in oklab, #ffffff 8%, transparent);
+  box-shadow:
+    0 1px 0 0 color-mix(in oklab, #ffffff 6%, transparent) inset,
+    0 24px 60px -24px rgba(0, 0, 0, 0.7);
+}
+
+/* Gradient text (electric blue → violet) */
+@utility gradient-text {
+  background: linear-gradient(
+    100deg,
+    var(--color-foreground) 0%,
+    var(--color-accent-soft) 45%,
+    var(--color-violet-soft) 100%
+  );
+  -webkit-background-clip: text;
+  background-clip: text;
+  color: transparent;
+}
+
+/* Soft glow halo for accent elements */
+@utility text-glow {
+  text-shadow: 0 0 28px color-mix(in oklab, var(--color-accent) 45%, transparent);
+}
+
+/* Hairline gradient border, used on cards/buttons */
+@utility ring-gradient {
+  background:
+    linear-gradient(var(--color-surface), var(--color-surface)) padding-box,
+    linear-gradient(120deg, var(--color-accent), var(--color-violet)) border-box;
+  border: 1px solid transparent;
+}
+
+/* Monospace eyebrow / kicker label */
+@utility eyebrow {
+  font-family: var(--font-mono), monospace;
+  font-size: 0.72rem;
+  letter-spacing: 0.22em;
+  text-transform: uppercase;
+  color: var(--color-accent);
+}
+
+/* ─── Background atmosphere ────────────────────────────────────────────── */
+.aurora {
+  position: fixed;
+  inset: 0;
+  z-index: -1;
+  overflow: hidden;
+  pointer-events: none;
+}
+.aurora::before,
+.aurora::after {
+  content: "";
+  position: absolute;
+  border-radius: 50%;
+  filter: blur(120px);
+  opacity: 0.5;
+}
+.aurora::before {
+  width: 60vw;
+  height: 60vw;
+  top: -20vw;
+  left: -10vw;
+  background: radial-gradient(circle, var(--color-accent-deep), transparent 70%);
+  animation: drift 26s ease-in-out infinite alternate;
+}
+.aurora::after {
+  width: 50vw;
+  height: 50vw;
+  bottom: -18vw;
+  right: -8vw;
+  background: radial-gradient(circle, var(--color-violet), transparent 70%);
+  animation: drift 32s ease-in-out infinite alternate-reverse;
+}
+
+/* Faint grid overlay for technical texture */
+.grid-overlay {
+  position: fixed;
+  inset: 0;
+  z-index: -1;
+  pointer-events: none;
+  background-image:
+    linear-gradient(to right, rgba(255, 255, 255, 0.025) 1px, transparent 1px),
+    linear-gradient(to bottom, rgba(255, 255, 255, 0.025) 1px, transparent 1px);
+  background-size: 64px 64px;
+  mask-image: radial-gradient(ellipse 80% 60% at 50% 0%, #000 35%, transparent 80%);
+  -webkit-mask-image: radial-gradient(ellipse 80% 60% at 50% 0%, #000 35%, transparent 80%);
+}
+
+@keyframes drift {
+  from {
+    transform: translate3d(0, 0, 0) scale(1);
+  }
+  to {
+    transform: translate3d(6vw, 4vw, 0) scale(1.15);
+  }
+}
+
+/* ─── Reduced motion ───────────────────────────────────────────────────── */
+@media (prefers-reduced-motion: reduce) {
+  html {
+    scroll-behavior: auto;
+  }
+  *,
+  *::before,
+  *::after {
+    animation-duration: 0.001ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.001ms !important;
+  }
 }
