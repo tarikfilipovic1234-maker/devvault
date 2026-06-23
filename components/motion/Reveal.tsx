@@ -1,11 +1,16 @@
 "use client";
 
-import { motion, useReducedMotion, type Variants } from "framer-motion";
+import { Children, cloneElement, isValidElement } from "react";
+import { motion, useReducedMotion } from "framer-motion";
 
 /**
  * Scroll-triggered reveal primitives built on Framer Motion. All respect
  * `prefers-reduced-motion`: when reduced, content renders in place with no
- * transform/opacity animation.
+ * animation.
+ *
+ * Each item animates independently via `whileInView` (rather than parent
+ * variant orchestration) so a card can never get stuck invisible — once ~15%
+ * of it is on screen it reliably animates to full opacity.
  */
 
 const EASE = [0.21, 0.47, 0.32, 0.98] as const;
@@ -28,7 +33,7 @@ export function Reveal({
       className={className}
       initial={reduce ? false : { opacity: 0, y }}
       whileInView={{ opacity: 1, y: 0 }}
-      viewport={{ once: true, margin: "-80px" }}
+      viewport={{ once: true, amount: 0.15 }}
       transition={{ duration: 0.6, ease: EASE, delay }}
     >
       {children}
@@ -36,17 +41,11 @@ export function Reveal({
   );
 }
 
-const containerVariants: Variants = {
-  hidden: {},
-  show: { transition: { staggerChildren: 0.08, delayChildren: 0.05 } },
-};
-
-const itemVariants: Variants = {
-  hidden: { opacity: 0, y: 20 },
-  show: { opacity: 1, y: 0, transition: { duration: 0.55, ease: EASE } },
-};
-
-/** Wraps a list whose children should reveal in a stagger. Pair with StaggerItem. */
+/**
+ * Container for a staggered group. Renders a plain element and hands each
+ * direct child an index so it can offset its own reveal — no fragile parent →
+ * child animation propagation.
+ */
 export function Stagger({
   children,
   className,
@@ -54,30 +53,39 @@ export function Stagger({
   children: React.ReactNode;
   className?: string;
 }) {
-  const reduce = useReducedMotion();
+  let index = 0;
   return (
-    <motion.div
-      className={className}
-      variants={reduce ? undefined : containerVariants}
-      initial={reduce ? false : "hidden"}
-      whileInView="show"
-      viewport={{ once: true, margin: "-60px" }}
-    >
-      {children}
-    </motion.div>
+    <div className={className}>
+      {Children.map(children, (child) => {
+        // Only inject the cascade index into StaggerItem children, so the
+        // index prop never leaks onto a plain DOM element as an attribute.
+        if (!isValidElement(child) || child.type !== StaggerItem) return child;
+        const el = child as React.ReactElement<{ index?: number }>;
+        return cloneElement(el, { index: index++ });
+      })}
+    </div>
   );
 }
 
 export function StaggerItem({
   children,
   className,
+  index = 0,
 }: {
   children: React.ReactNode;
   className?: string;
+  index?: number;
 }) {
   const reduce = useReducedMotion();
   return (
-    <motion.div className={className} variants={reduce ? undefined : itemVariants}>
+    <motion.div
+      className={className}
+      initial={reduce ? false : { opacity: 0, y: 20 }}
+      whileInView={{ opacity: 1, y: 0 }}
+      viewport={{ once: true, amount: 0.15 }}
+      // Cap the cascade so later items in long lists don't lag too far behind.
+      transition={{ duration: 0.55, ease: EASE, delay: (index % 8) * 0.07 }}
+    >
       {children}
     </motion.div>
   );
