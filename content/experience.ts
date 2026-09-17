@@ -33,6 +33,18 @@ export const experience: ExperienceEntry[] = [
     ],
   },
   {
+    kind: "highlight",
+    title: "Enamel, Voltra and USA2BIH",
+    organization: "Personal projects",
+    period: "2026",
+    description:
+      "A dental booking platform with a real availability engine (Enamel), a storefront with Stripe checkout and inventory holds (Voltra), and a vehicle-import platform with a tested landed-cost calculator running in CI (USA2BIH).",
+    highlights: [
+      "Server-side transactional logic to prevent double-booking and overselling",
+      "Unit-tested business logic with GitHub Actions CI",
+    ],
+  },
+  {
     kind: "work",
     title: "Student Intern, Full-Stack Development",
     organization: "Assured, Sarajevo",
@@ -43,18 +55,6 @@ export const experience: ExperienceEntry[] = [
       "Assisted in building and maintaining web application features",
       "Helped build and improve a Playwright end-to-end testing framework",
       "Took part in testing and debugging to improve application performance and reliability",
-    ],
-  },
-  {
-    kind: "highlight",
-    title: "Enamel, Voltra and USA2BIH",
-    organization: "Personal projects",
-    period: "2025",
-    description:
-      "A dental booking platform with a real availability engine (Enamel), a storefront with Stripe checkout and inventory holds (Voltra), and a vehicle-import platform with a tested landed-cost calculator running in CI (USA2BIH).",
-    highlights: [
-      "Server-side transactional logic to prevent double-booking and overselling",
-      "Unit-tested business logic with GitHub Actions CI",
     ],
   },
   {
