@@ -1,5 +1,5 @@
 import type { Metadata } from "next";
-import { skillCategories } from "@/content/skills";
+import { certificates, skillCategories } from "@/content/skills";
 import { pageMetadata } from "@/lib/seo";
 import { Container } from "@/components/ui/Container";
 import { Card } from "@/components/ui/Card";
@@ -20,8 +20,8 @@ export default function SkillsPage() {
           Skills and technologies
         </h1>
         <p className="mt-4 leading-7 text-muted">
-          Everything listed here is something I have used to build and ship one
-          of the projects on this site.
+          Grouped by where they sit in a project. Everything here comes from my
+          CV or from a project on this site that is built with it.
         </p>
       </header>
 
@@ -44,6 +44,22 @@ export default function SkillsPage() {
           </Card>
         ))}
       </div>
+
+      <section className="mt-12">
+        <h2 className="font-display text-base font-semibold tracking-tight">
+          Certificates
+        </h2>
+        <ul className="mt-4 flex flex-wrap gap-1.5">
+          {certificates.map((certificate) => (
+            <li
+              key={certificate}
+              className="rounded-sm border border-line bg-raised px-2 py-1 text-xs text-muted"
+            >
+              {certificate}
+            </li>
+          ))}
+        </ul>
+      </section>
     </Container>
   );
 }

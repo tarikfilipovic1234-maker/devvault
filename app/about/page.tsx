@@ -15,7 +15,7 @@ export const metadata: Metadata = pageMetadata({
 const facts = [
   { label: "Based in", value: site.location },
   { label: "Focus", value: "Next.js, React, TypeScript" },
-  { label: "Also works in", value: "C#, .NET" },
+  { label: "Also works in", value: "Python, C#, .NET" },
   { label: "Status", value: "Open to roles" },
 ];
 
@@ -36,17 +36,19 @@ export default function AboutPage() {
               easy to get wrong: computing real appointment availability,
               holding inventory during checkout, isolating tenant data, keeping
               a cost calculation correct enough to put a number in front of a
-              buyer.
+              buyer, making an AI agent admit what it could not verify.
             </p>
             <p>
-              I&apos;m a second-year Information Technology student at
-              International Burch University, and I&apos;ve been interning at
-              Assured in Sarajevo, working across the frontend and backend and
-              helping build out a Playwright end-to-end testing framework. Most
-              of what I know in practice comes from shipping my own projects:
-              Enamel (dental booking), Voltra (Stripe storefront with inventory
-              holds), USA2BIH (vehicle-import cost calculator with a test suite
-              in CI) and Darceflow (multi-tenant SaaS).
+              I&apos;m a third-year Information Technology student at
+              International Burch University. In 2025 I spent four months
+              interning at Assured in Sarajevo, contributing to frontend and
+              backend tasks and helping build out a Playwright end-to-end
+              testing framework. Most of what I know in practice comes from
+              shipping my own projects: GenLeadAI (a lead research agent that
+              records what it could not verify), Enamel (dental booking),
+              Voltra (Stripe storefront with inventory holds), USA2BIH
+              (vehicle-import cost calculator with a test suite in CI) and
+              Darceflow (multi-tenant SaaS).
             </p>
             <p>
               Away from the keyboard I train Brazilian Jiu-Jitsu and lift.

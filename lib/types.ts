@@ -13,6 +13,7 @@ export type ProjectCategory =
   | "SaaS"
   | "E-commerce"
   | "Booking"
+  | "AI"
   | "Full-stack";
 
 /** A single technology badge (label only; icon resolved in the UI layer). */
@@ -46,17 +47,23 @@ export interface Project {
   /** Path under /public for the card thumbnail/screenshot. */
   thumbnail: string;
 
-  /** Long-form fields for the detail page. */
+  /**
+   * Long-form fields for the detail page. Only `overview` and `features` are
+   * required: the rest are optional so a project can be listed with exactly
+   * what is known about it, and the detail page omits any section with no
+   * content rather than padding it out.
+   */
   overview: string;
-  motivation: string;
   /** Detailed feature list for the detail page. */
   features: string[];
+  /** Why the project was built. */
+  motivation?: string;
   /** Architecture summary paragraph(s). */
-  architecture: string;
+  architecture?: string;
   /** Notable challenges solved. */
-  challenges: string[];
+  challenges?: string[];
   /** Lessons learned. */
-  lessons: string[];
+  lessons?: string[];
 }
 
 export interface SkillCategory {

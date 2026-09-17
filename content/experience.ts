@@ -1,35 +1,48 @@
 import type { ExperienceEntry } from "@/lib/types";
 
 /**
- * Experience timeline, reverse-chronological. Work and education come from the
- * owner's CV; "highlight" entries surface real shipped projects.
+ * Experience timeline, reverse-chronological. Work and education are taken
+ * from the owner's CV and follow it where the two disagree; "highlight"
+ * entries surface real shipped projects.
  *
  * Date ranges use an en dash, the correct mark for a span.
  */
 export const experience: ExperienceEntry[] = [
   {
-    kind: "work",
-    title: "Student Intern, Full-Stack Development",
-    organization: "Assured, Sarajevo",
-    period: "Aug 2025 – May 2026",
+    kind: "highlight",
+    title: "GenLeadAI, lead research agent",
+    organization: "Personal project",
+    period: "2026",
     description:
-      "Worked on frontend and backend tasks across real web applications alongside the development team, on assigned features and ongoing project requirements.",
+      "An AI agent that researches real businesses against real sources, scores them as sales leads, and records what it could not verify instead of guessing. Python and FastAPI backend, Next.js frontend.",
     highlights: [
-      "Built and maintained web application features, frontend and backend",
-      "Helped build and improve a Playwright end-to-end testing framework",
-      "Took part in testing and debugging to improve performance and reliability",
+      "Agent selects its own tools rather than following a fixed script",
+      "Every collected field labelled verified, inferred or unverified",
     ],
   },
   {
     kind: "highlight",
     title: "Darceflow, multi-tenant SaaS for BJJ gyms",
     organization: "Personal project",
-    period: "2026 – Present",
+    period: "2026",
     description:
-      "A multi-tenant SaaS dashboard for Brazilian Jiu-Jitsu gyms covering memberships, attendance and scheduling, with Stripe billing and strict per-tenant data isolation.",
+      "A dashboard covering memberships, attendance, belt progression and class scheduling for Brazilian Jiu-Jitsu gyms, with Stripe billing and per-tenant data isolation.",
     highlights: [
       "Tenant-scoped data access enforced at the data layer",
       "Stripe subscription billing reconciled through webhooks",
+    ],
+  },
+  {
+    kind: "work",
+    title: "Student Intern, Full-Stack Development",
+    organization: "Assured, Sarajevo",
+    period: "Aug 2025 – Nov 2025",
+    description:
+      "Contributed to frontend and backend development tasks on real web applications, working with the development team on assigned features and ongoing project requirements.",
+    highlights: [
+      "Assisted in building and maintaining web application features",
+      "Helped build and improve a Playwright end-to-end testing framework",
+      "Took part in testing and debugging to improve application performance and reliability",
     ],
   },
   {
@@ -46,11 +59,11 @@ export const experience: ExperienceEntry[] = [
   },
   {
     kind: "education",
-    title: "BSc Information Technology (in progress)",
+    title: "BSc Information Technology (third year)",
     organization: "International Burch University, Sarajevo",
     period: "Oct 2023 – Present",
     description:
-      "Programming, databases, web development and software engineering, with a focus on practical full-stack work.",
+      "Programming, databases, web development and software engineering, focused on building practical technical skills and a foundation for full-stack development.",
   },
   {
     kind: "education",
@@ -58,6 +71,6 @@ export const experience: ExperienceEntry[] = [
     organization: "First Gymnasium, Sarajevo",
     period: "Sep 2019 – Jul 2023",
     description:
-      "IT curriculum covering C++, Android Studio, databases, and web development with HTML and CSS.",
+      "IT curriculum covering C++, Android Studio, basic databases, and web development with HTML and CSS.",
   },
 ];

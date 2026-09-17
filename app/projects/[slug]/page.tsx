@@ -102,21 +102,29 @@ export default async function ProjectDetailPage({
           <Prose title="Overview">
             <p>{project.overview}</p>
           </Prose>
-          <Prose title="Motivation">
-            <p>{project.motivation}</p>
-          </Prose>
+          {project.motivation && (
+            <Prose title="Motivation">
+              <p>{project.motivation}</p>
+            </Prose>
+          )}
           <Prose title="Key features">
             <BulletList items={project.features} />
           </Prose>
-          <Prose title="Architecture">
-            <p>{project.architecture}</p>
-          </Prose>
-          <Prose title="Challenges solved">
-            <BulletList items={project.challenges} />
-          </Prose>
-          <Prose title="Lessons learned">
-            <BulletList items={project.lessons} />
-          </Prose>
+          {project.architecture && (
+            <Prose title="Architecture">
+              <p>{project.architecture}</p>
+            </Prose>
+          )}
+          {project.challenges && project.challenges.length > 0 && (
+            <Prose title="Challenges solved">
+              <BulletList items={project.challenges} />
+            </Prose>
+          )}
+          {project.lessons && project.lessons.length > 0 && (
+            <Prose title="Lessons learned">
+              <BulletList items={project.lessons} />
+            </Prose>
+          )}
         </article>
 
         {/* Aside */}

@@ -1,7 +1,7 @@
 import type { Metadata } from "next";
 import { site } from "@/content/site";
 import { experience } from "@/content/experience";
-import { skillCategories } from "@/content/skills";
+import { certificates, skillCategories } from "@/content/skills";
 import { pageMetadata } from "@/lib/seo";
 import { Container } from "@/components/ui/Container";
 import { Button } from "@/components/ui/Button";
@@ -77,6 +77,19 @@ export default function ResumePage() {
                 </div>
               ))}
             </div>
+          </section>
+
+          <section>
+            <h2 className="font-display text-lg font-semibold tracking-tight">
+              Certificates
+            </h2>
+            <ul className="mt-4 space-y-2">
+              {certificates.map((certificate) => (
+                <li key={certificate} className="text-sm text-muted">
+                  {certificate}
+                </li>
+              ))}
+            </ul>
           </section>
         </div>
 

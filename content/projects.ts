@@ -10,13 +10,54 @@ import type { Project } from "@/lib/types";
  */
 export const projects: Project[] = [
   {
+    slug: "genleadai",
+    name: "GenLeadAI",
+    description:
+      "An AI agent that researches real businesses against real sources, scores them as sales leads, and records what it could not verify instead of guessing.",
+    categories: ["AI", "Full-stack"],
+    tech: [
+      "Python",
+      "FastAPI",
+      "Claude Agent SDK",
+      "Next.js",
+      "TypeScript",
+      "PostgreSQL",
+      "SQLAlchemy",
+      "OpenStreetMap",
+    ],
+    liveUrl: "https://genleadai.vercel.app/",
+    repoUrl: "https://github.com/tarikfilipovic1234-maker/genleadai",
+    keyFeatures: [
+      "Plain-language requests, the agent chooses its own tools",
+      "Every field labelled verified, inferred or unverified",
+      "Rule-based lead scoring and drafted outreach",
+    ],
+    status: "Completed",
+    featured: true,
+    order: 60,
+    thumbnail: "/projects/genleadai.png",
+    overview:
+      "GenLeadAI researches real businesses against real sources, scores them as sales leads, and records what it could not verify instead of guessing. You type a request in plain language, for example “Find 10 beauty salons in Sarajevo that don’t have online booking”, and the agent works out how to answer it.",
+    features: [
+      "Plain-language requests, with the agent deciding for itself which tools to use",
+      "Searches OpenStreetMap for businesses matching a category and city",
+      "Fetches business websites and checks them for booking systems",
+      "Searches the open web when a directory listing has no site",
+      "Scores each business against configurable rules",
+      "Drafts a personalised outreach message per business",
+      "Labels every collected field verified (read from a named source), inferred (the model's judgement based on evidence it found), or unverified (looked for but not confirmed)",
+    ],
+    architecture:
+      "A Python and FastAPI backend runs the agent loop, which selects its own tools rather than following a fixed script, and persists results through SQLAlchemy into PostgreSQL. A Next.js and TypeScript frontend presents the runs. Provenance is carried on each field, so a result distinguishes what was read from a named source, what the model inferred from evidence, and what it looked for but could not confirm.",
+  },
+  {
     slug: "darceflow",
     name: "Darceflow",
     description:
-      "Multi-tenant SaaS dashboard for Brazilian Jiu-Jitsu gyms: memberships, attendance, belt progression, class scheduling and billing in one place.",
+      "Multi-tenant SaaS dashboard that runs the business side of a Brazilian Jiu-Jitsu gym: memberships, attendance, belt progression, class scheduling and Stripe billing, with each gym's data isolated at the data-access layer.",
     categories: ["SaaS", "Full-stack"],
     tech: ["Next.js 16", "React 19", "TypeScript", "Prisma 7", "Stripe", "PostgreSQL"],
-    liveUrl: "https://darceflow.vercel.app",
+    liveUrl: "https://darceflow.vercel.app/",
     repoUrl: "https://github.com/tarikfilipovic1234-maker/darceflow",
     keyFeatures: [
       "Multi-tenant workspaces with isolated data per gym",
@@ -24,7 +65,7 @@ export const projects: Project[] = [
       "Attendance tracking and belt progression",
       "Class scheduling and roster management",
     ],
-    status: "In Progress",
+    status: "Completed",
     featured: true,
     order: 20,
     thumbnail: "/projects/darceflow.png",
