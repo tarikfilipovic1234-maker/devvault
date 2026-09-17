@@ -1,36 +1,32 @@
 import { site } from "@/content/site";
 import { Container } from "@/components/ui/Container";
 import { Button } from "@/components/ui/Button";
-import { GradientText } from "@/components/ui/GradientText";
-import { Reveal } from "@/components/motion/Reveal";
 import { ArrowIcon, DownloadIcon } from "@/components/ui/icons";
 
 export function ContactCTA() {
   return (
-    <section className="py-20 sm:py-28">
+    <section className="pb-20 pt-4 sm:pb-24 sm:pt-6">
       <Container>
-        <Reveal>
-          <div className="ring-gradient relative overflow-hidden rounded-3xl px-8 py-16 text-center sm:px-16">
-            <div className="absolute inset-0 -z-10 bg-gradient-to-br from-accent/10 via-transparent to-violet/10" />
-            <p className="eyebrow mb-4">03 / Let&apos;s talk</p>
-            <h2 className="mx-auto max-w-2xl font-display text-3xl font-semibold tracking-tight sm:text-5xl">
-              Have a role or project in mind?{" "}
-              <GradientText>Let&apos;s build it.</GradientText>
+        <div className="panel flex flex-col gap-8 rounded-lg p-8 sm:p-12 lg:flex-row lg:items-end lg:justify-between">
+          <div className="max-w-xl">
+            <h2 className="font-display text-2xl font-semibold tracking-tight sm:text-3xl">
+              Looking for a developer?
             </h2>
-            <p className="mx-auto mt-5 max-w-xl text-lg leading-8 text-muted">
-              I&apos;m open to full-stack, front-end and back-end opportunities. The
-              fastest way to reach me is the form — or grab my CV.
+            <p className="mt-4 leading-7 text-muted">
+              I&apos;m open to full-stack, front-end and back-end roles. The
+              contact form reaches my inbox directly, or you can read the CV
+              first.
             </p>
-            <div className="mt-9 flex flex-wrap justify-center gap-3">
-              <Button href="/contact">
-                Get in touch <ArrowIcon />
-              </Button>
-              <Button href={site.cvPath} variant="secondary">
-                <DownloadIcon /> Download CV
-              </Button>
-            </div>
           </div>
-        </Reveal>
+          <div className="flex flex-wrap gap-3">
+            <Button href="/contact">
+              Get in touch <ArrowIcon />
+            </Button>
+            <Button href={site.cvPath} variant="secondary">
+              <DownloadIcon /> Download CV
+            </Button>
+          </div>
+        </div>
       </Container>
     </section>
   );

@@ -74,7 +74,7 @@ export interface ExperienceEntry {
   title: string;
   /** Company / school / context. */
   organization: string;
-  /** Human-readable period, e.g. "2024 — Present". */
+  /** Human-readable period, e.g. "2024, Present". */
   period: string;
   /** Short description, recruiter-skimmable. */
   description: string;

@@ -7,9 +7,7 @@ import type { Project } from "@/lib/types";
 import { Container } from "@/components/ui/Container";
 import { Badge } from "@/components/ui/Badge";
 import { Button } from "@/components/ui/Button";
-import { GradientText } from "@/components/ui/GradientText";
-import { Reveal } from "@/components/motion/Reveal";
-import { ProjectThumb } from "@/components/projects/ProjectThumb";
+import { ProjectThumb, hasScreenshots } from "@/components/projects/ProjectThumb";
 import {
   ArrowIcon,
   ExternalIcon,
@@ -54,7 +52,7 @@ export default async function ProjectDetailPage({
         href="/projects"
         className="group inline-flex items-center gap-2 text-sm text-muted transition-colors hover:text-foreground"
       >
-        <ArrowIcon className="rotate-180 transition-transform group-hover:-translate-x-1" />
+        <ArrowIcon className="rotate-180 transition-transform group-hover:-translate-x-0.5" />
         All projects
       </Link>
 
@@ -71,8 +69,8 @@ export default async function ProjectDetailPage({
             {project.status}
           </Badge>
         </div>
-        <h1 className="mt-5 font-display text-4xl font-semibold tracking-tight sm:text-5xl">
-          <GradientText>{project.name}</GradientText>
+        <h1 className="mt-5 font-display text-3xl font-semibold tracking-tight sm:text-4xl">
+          {project.name}
         </h1>
         <p className="mt-4 max-w-2xl text-lg leading-8 text-muted">
           {project.description}
@@ -91,12 +89,12 @@ export default async function ProjectDetailPage({
         </div>
       </header>
 
-      {/* Cover */}
-      <Reveal className="mt-12">
-        <div className="relative aspect-[16/8] w-full overflow-hidden rounded-2xl border border-line">
-          <ProjectThumb project={project} priority />
+      {/* Cover, only once a real screenshot exists for this project */}
+      {hasScreenshots && (
+        <div className="relative mt-12 aspect-[16/8] w-full overflow-hidden rounded-lg border border-line">
+          <ProjectThumb project={project} priority sizes="(max-width: 1152px) 100vw, 1152px" />
         </div>
-      </Reveal>
+      )}
 
       {/* Body */}
       <div className="mt-14 grid gap-12 lg:grid-cols-3">
@@ -123,22 +121,22 @@ export default async function ProjectDetailPage({
 
         {/* Aside */}
         <aside className="lg:col-span-1">
-          <div className="glass sticky top-24 flex flex-col gap-7 rounded-2xl p-6">
+          <div className="panel sticky top-24 flex flex-col gap-7 rounded-lg p-6">
             <Meta project={project} />
           </div>
         </aside>
       </div>
 
       {/* Footer nav */}
-      <Reveal className="mt-16 border-t border-line pt-8">
+      <div className="mt-16 border-t border-line pt-8">
         <Link
           href="/projects"
-          className="group inline-flex items-center gap-2 text-sm font-medium text-accent transition-colors hover:text-accent-soft"
+          className="group inline-flex items-center gap-2 text-sm font-medium text-accent-soft transition-colors hover:text-accent"
         >
-          <ArrowIcon className="rotate-180 transition-transform group-hover:-translate-x-1" />
+          <ArrowIcon className="rotate-180 transition-transform group-hover:-translate-x-0.5" />
           Back to all projects
         </Link>
-      </Reveal>
+      </div>
     </Container>
   );
 }
@@ -151,14 +149,12 @@ function Prose({
   children: React.ReactNode;
 }) {
   return (
-    <Reveal>
-      <section>
-        <h2 className="font-display text-xl font-semibold tracking-tight">
-          {title}
-        </h2>
-        <div className="mt-4 space-y-3 leading-7 text-muted">{children}</div>
-      </section>
-    </Reveal>
+    <section>
+      <h2 className="font-display text-lg font-semibold tracking-tight">
+        {title}
+      </h2>
+      <div className="mt-4 space-y-3 leading-7 text-muted">{children}</div>
+    </section>
   );
 }
 
@@ -167,7 +163,7 @@ function BulletList({ items }: { items: string[] }) {
     <ul className="space-y-3">
       {items.map((item) => (
         <li key={item} className="flex gap-3">
-          <span className="mt-2.5 h-1.5 w-1.5 shrink-0 rounded-full bg-accent" />
+          <span aria-hidden className="mt-2.5 h-1 w-1 shrink-0 rounded-full bg-line-strong" />
           <span>{item}</span>
         </li>
       ))}

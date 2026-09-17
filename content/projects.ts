@@ -1,19 +1,19 @@
 import type { Project } from "@/lib/types";
 
 /**
- * Featured projects. Adding a new flagship (e.g. AutoVault) is just another
- * entry here — no layout or page changes required.
+ * Projects. Adding another one is just another entry here; no layout or page
+ * changes are required.
  *
- * NOTE: `repoUrl` values are constructed from the owner's GitHub handle and may
- * need correcting to the real repository names. `thumbnail` paths expect images
- * under /public/projects/<slug>.png (placeholders until real screenshots land).
+ * `thumbnail` paths expect images under /public/projects/<slug>.png. Until
+ * those exist, set NEXT_PUBLIC_HAS_SCREENSHOTS to anything but "1" and the
+ * cards render without an image slot rather than with placeholder artwork.
  */
 export const projects: Project[] = [
   {
     slug: "darceflow",
     name: "Darceflow",
     description:
-      "Multi-tenant SaaS dashboard for Brazilian Jiu-Jitsu gyms — memberships, attendance, belt progression, class scheduling and billing in one place.",
+      "Multi-tenant SaaS dashboard for Brazilian Jiu-Jitsu gyms: memberships, attendance, belt progression, class scheduling and billing in one place.",
     categories: ["SaaS", "Full-stack"],
     tech: ["Next.js 16", "React 19", "TypeScript", "Prisma 7", "Stripe", "PostgreSQL"],
     liveUrl: "https://darceflow.vercel.app",
@@ -31,7 +31,7 @@ export const projects: Project[] = [
     overview:
       "Darceflow is a multi-tenant SaaS platform that gives Brazilian Jiu-Jitsu academies a single dashboard for running the business side of the gym: members, attendance, belt promotions, class schedules and recurring billing.",
     motivation:
-      "BJJ gyms typically juggle spreadsheets, paper attendance sheets and a separate payment processor. I wanted to build a genuinely multi-tenant product — one deployment serving many gyms with strict data isolation — and learn the operational realities of subscription billing along the way.",
+      "BJJ gyms typically juggle spreadsheets, paper attendance sheets and a separate payment processor. I wanted to build a genuinely multi-tenant product, one deployment serving many gyms with strict data isolation, and learn the operational realities of subscription billing along the way.",
     features: [
       "Tenant-scoped data model so each gym only ever sees its own members and classes",
       "Stripe-powered memberships with recurring subscriptions and billing portal",
@@ -57,7 +57,7 @@ export const projects: Project[] = [
     slug: "enamel",
     name: "Enamel",
     description:
-      "Bilingual dental-clinic website with a real appointment-booking engine — availability, staff time-off and overlap prevention — plus a staff admin area.",
+      "Bilingual dental-clinic website with a real appointment-booking engine covering availability, staff time-off and overlap prevention, plus a staff admin area.",
     categories: ["Booking", "Full-stack"],
     tech: ["Next.js 16", "React 19", "TypeScript", "Prisma 7", "Neon Auth", "Resend", "i18n"],
     liveUrl: "https://enamel-pi.vercel.app",
@@ -75,7 +75,7 @@ export const projects: Project[] = [
     overview:
       "Enamel is a bilingual dental-clinic website backed by a working appointment-booking engine. Patients browse services and book real time slots; staff manage appointments and availability through an admin area.",
     motivation:
-      "I wanted to build a booking system that handles the genuinely hard parts — computing real availability, respecting staff time-off, and preventing double-booking — rather than a cosmetic 'request an appointment' form.",
+      "I wanted to build a booking system that handles the genuinely hard parts: computing real availability, respecting staff time-off, and preventing double-booking, rather than a cosmetic 'request an appointment' form.",
     features: [
       "Availability computed from working hours, existing appointments and staff time-off",
       "Overlap prevention so two patients can't book the same slot",
@@ -119,7 +119,7 @@ export const projects: Project[] = [
     overview:
       "Voltra is a full e-commerce experience for a fictional energy-drink brand: a bold marketing storefront combined with a real shop featuring Stripe checkout, inventory management and a loyalty program, localized into six languages.",
     motivation:
-      "I wanted to build commerce mechanics that go beyond 'add to cart and pay' — reserving inventory during checkout, rewarding repeat customers with loyalty tiers, and supporting a genuinely international audience.",
+      "I wanted to build commerce mechanics that go beyond 'add to cart and pay': reserving inventory during checkout, rewarding repeat customers with loyalty tiers, and supporting a genuinely international audience.",
     features: [
       "Stripe checkout with server-validated carts",
       "Inventory holds that reserve stock during checkout to avoid overselling",
@@ -137,7 +137,7 @@ export const projects: Project[] = [
     ],
     lessons: [
       "Overselling is an inventory-timing problem; holds with expiry solve it cleanly",
-      "Treat the server as the source of truth for prices and stock — never the client",
+      "Treat the server as the source of truth for prices and stock, never the client",
       "Localized commerce touches formatting, currency and copy everywhere",
     ],
   },
@@ -145,7 +145,7 @@ export const projects: Project[] = [
     slug: "usa2bih",
     name: "USA2BIH",
     description:
-      "US → Bosnia vehicle-import platform: catalog, landed-cost calculator (customs + VAT → BAM/EUR), comparison tool, user dashboard and admin panel.",
+      "Vehicle-import platform for US to Bosnia imports: catalog, landed-cost calculator (customs and VAT, in BAM and EUR), comparison tool, user dashboard and admin panel.",
     categories: ["Full-stack", "E-commerce"],
     tech: ["Next.js 16", "React 19", "TypeScript", "Prisma 7", "Neon", "Better Auth", "Vitest"],
     liveUrl: "https://usa2bih.vercel.app",
@@ -161,7 +161,7 @@ export const projects: Project[] = [
     order: 40,
     thumbnail: "/projects/usa2bih.png",
     overview:
-      "USA2BIH helps buyers import vehicles from the United States to Bosnia. It combines a vehicle catalog with a landed-cost calculator that estimates the true delivered price — customs duties and VAT converted into BAM and EUR — plus a comparison tool, a user dashboard and an admin panel.",
+      "USA2BIH helps buyers import vehicles from the United States to Bosnia. It combines a vehicle catalog with a landed-cost calculator that estimates the true delivered price, customs duties and VAT converted into BAM and EUR, plus a comparison tool, a user dashboard and an admin panel.",
     motivation:
       "Importing a car involves opaque costs that are hard to estimate up front. I built a tool that turns those fees into a transparent, accurate landed-cost figure, and treated correctness seriously with a test suite and CI.",
     features: [
@@ -216,7 +216,7 @@ export const projects: Project[] = [
       "CRUD for activities with a clean, typed contract between client and server",
     ],
     architecture:
-      "A .NET solution divided into four layers — API (controllers/HTTP), Application (use-case handlers), Domain (entities and core rules) and Persistence (EF Core data access). Dependencies point inward toward the Domain, keeping business logic independent of frameworks. A React + TypeScript client consumes the REST API.",
+      "A .NET solution divided into four layers: API (controllers and HTTP), Application (use-case handlers), Domain (entities and core rules) and Persistence (EF Core data access). Dependencies point inward toward the Domain, keeping business logic independent of frameworks. A React + TypeScript client consumes the REST API.",
     challenges: [
       "Enforcing dependency direction so the Domain stays framework-agnostic",
       "Mapping between domain entities, persistence models and API contracts",

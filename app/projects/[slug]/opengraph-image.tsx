@@ -2,7 +2,7 @@ import { ImageResponse } from "next/og";
 import { getProject, getProjectSlugs } from "@/lib/projects";
 import { site } from "@/content/site";
 
-export const alt = "Project — Tarik Filipović";
+export const alt = `Project by ${site.name}`;
 export const size = { width: 1200, height: 630 };
 export const contentType = "image/png";
 
@@ -34,11 +34,10 @@ export default async function Image({
           flexDirection: "column",
           justifyContent: "space-between",
           padding: 80,
-          backgroundColor: "#050609",
-          backgroundImage:
-            "radial-gradient(900px circle at 12% 0%, rgba(46,155,255,0.30), transparent 55%), radial-gradient(800px circle at 100% 100%, rgba(139,92,246,0.28), transparent 55%)",
-          color: "#eef2f8",
+          backgroundColor: "#0a0c10",
+          color: "#e9ecf1",
           fontFamily: "sans-serif",
+          borderTop: "6px solid #2e9bff",
         }}
       >
         {/* top row */}
@@ -47,21 +46,21 @@ export default async function Image({
             display: "flex",
             justifyContent: "space-between",
             alignItems: "center",
-            fontSize: 22,
-            letterSpacing: 4,
+            fontSize: 20,
+            letterSpacing: 3,
             textTransform: "uppercase",
-            color: "#6cb8ff",
+            color: "#79818e",
           }}
         >
           <span>Project</span>
-          {status ? <span style={{ color: "#93a1ba" }}>{status}</span> : null}
+          {status ? <span>{status}</span> : null}
         </div>
 
         {/* middle */}
         <div style={{ display: "flex", flexDirection: "column" }}>
           <div
             style={{
-              fontSize: 96,
+              fontSize: 92,
               fontWeight: 700,
               lineHeight: 1.05,
               letterSpacing: -2,
@@ -74,7 +73,7 @@ export default async function Image({
               marginTop: 24,
               fontSize: 30,
               lineHeight: 1.4,
-              color: "#93a1ba",
+              color: "#9aa3b2",
               maxWidth: 900,
             }}
           >
@@ -90,17 +89,19 @@ export default async function Image({
             alignItems: "flex-end",
           }}
         >
-          <div style={{ display: "flex", gap: 12, flexWrap: "wrap", maxWidth: 760 }}>
+          <div
+            style={{ display: "flex", gap: 12, flexWrap: "wrap", maxWidth: 760 }}
+          >
             {tech.map((t) => (
               <div
                 key={t}
                 style={{
                   display: "flex",
-                  border: "1px solid #1b2742",
-                  borderRadius: 10,
+                  border: "1px solid #333944",
+                  borderRadius: 6,
                   padding: "8px 16px",
                   fontSize: 22,
-                  color: "#cdd6e6",
+                  color: "#9aa3b2",
                 }}
               >
                 {t}
@@ -123,9 +124,10 @@ export default async function Image({
                 justifyContent: "center",
                 width: 48,
                 height: 48,
-                borderRadius: 12,
-                background: "linear-gradient(135deg, #2e9bff, #8b5cf6)",
-                fontSize: 22,
+                borderRadius: 8,
+                background: "#2e9bff",
+                color: "#061018",
+                fontSize: 20,
                 fontWeight: 700,
               }}
             >

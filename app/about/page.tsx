@@ -3,63 +3,59 @@ import { site } from "@/content/site";
 import { pageMetadata } from "@/lib/seo";
 import { Container } from "@/components/ui/Container";
 import { Button } from "@/components/ui/Button";
-import { GradientText } from "@/components/ui/GradientText";
-import { Reveal } from "@/components/motion/Reveal";
 import { Portrait } from "@/components/about/Portrait";
 import { ArrowIcon, DownloadIcon } from "@/components/ui/icons";
 
 export const metadata: Metadata = pageMetadata({
   title: "About",
-  description: `About ${site.name} — ${site.role} based in ${site.location}, building full-stack products with Next.js, React and TypeScript.`,
+  description: `About ${site.name}, a ${site.role.toLowerCase()} in ${site.location} who builds web apps with Next.js, React and TypeScript.`,
   path: "/about",
 });
 
 const facts = [
   { label: "Based in", value: site.location },
-  { label: "Role", value: site.role },
-  { label: "Focus", value: "Next.js · React · TypeScript" },
-  { label: "Currently", value: "Open to opportunities" },
+  { label: "Focus", value: "Next.js, React, TypeScript" },
+  { label: "Also works in", value: "C#, .NET" },
+  { label: "Status", value: "Open to roles" },
 ];
 
 export default function AboutPage() {
   return (
-    <Container className="py-20 sm:py-28">
-      <div className="grid gap-12 lg:grid-cols-[1fr_320px] lg:gap-16">
-        {/* Bio */}
+    <Container className="py-16 sm:py-24">
+      <div className="grid gap-12 lg:grid-cols-[1fr_300px] lg:gap-20">
         <div className="max-w-2xl">
-          <p className="eyebrow mb-4">About me</p>
-          <h1 className="font-display text-4xl font-semibold leading-tight tracking-tight sm:text-5xl">
-            Developer who sweats the <GradientText>hard details</GradientText>.
+          <p className="eyebrow mb-3">About</p>
+          <h1 className="font-display text-3xl font-semibold leading-tight tracking-tight sm:text-4xl">
+            {site.name}
           </h1>
 
-          <div className="mt-8 space-y-5 text-lg leading-8 text-muted">
+          <div className="mt-8 space-y-5 leading-8 text-muted">
             <p>
-              I&apos;m {site.name.split(" ")[0]}, a full-stack developer based in{" "}
-              {site.location}. I build production-grade web apps end to end — the
-              kind with real booking engines, multi-tenant data models, payments
-              and internationalization, not just polished landing pages.
+              I&apos;m a full-stack developer based in {site.location}. I build
+              web apps end to end, and I gravitate towards the parts that are
+              easy to get wrong: computing real appointment availability,
+              holding inventory during checkout, isolating tenant data, keeping
+              a cost calculation correct enough to put a number in front of a
+              buyer.
             </p>
             <p>
               I&apos;m a second-year Information Technology student at
               International Burch University, and I&apos;ve been interning at
-              Assured in Sarajevo — contributing across the frontend and backend
-              and helping build out a Playwright end-to-end testing framework.
-              Most of what I know, though, comes from shipping real projects:
-              dental booking (Enamel), an e-commerce store with Stripe and
-              inventory holds (Voltra), a vehicle-import platform with a tested
-              cost calculator (USA2BIH), and a multi-tenant SaaS dashboard
-              (Darceflow).
+              Assured in Sarajevo, working across the frontend and backend and
+              helping build out a Playwright end-to-end testing framework. Most
+              of what I know in practice comes from shipping my own projects:
+              Enamel (dental booking), Voltra (Stripe storefront with inventory
+              holds), USA2BIH (vehicle-import cost calculator with a test suite
+              in CI) and Darceflow (multi-tenant SaaS).
             </p>
             <p>
-              Away from the keyboard I train Brazilian Jiu-Jitsu and lift — the
-              same appetite for steady, compounding progress that I bring to
-              code. (Darceflow, my BJJ-gym SaaS, is no coincidence.)
+              Away from the keyboard I train Brazilian Jiu-Jitsu and lift.
+              Darceflow, my BJJ-gym SaaS, is not a coincidence.
             </p>
             <p>
-              I care about clean architecture, accessibility, performance and
-              the small interactions that make software feel considered. I&apos;m
-              looking for a full-stack, front-end or back-end role where I can keep raising
-              that bar.
+              I&apos;m looking for a full-stack, front-end or back-end role
+              where correctness matters and I can keep learning from people who
+              have shipped more than I have.
             </p>
           </div>
 
@@ -73,10 +69,9 @@ export default function AboutPage() {
           </div>
         </div>
 
-        {/* Portrait + facts */}
-        <Reveal className="lg:pt-4">
+        <div className="lg:pt-10">
           <Portrait />
-          <dl className="glass mt-6 space-y-3 rounded-2xl p-6">
+          <dl className="panel mt-6 max-w-xs space-y-3 rounded-lg p-5">
             {facts.map((fact) => (
               <div
                 key={fact.label}
@@ -89,7 +84,7 @@ export default function AboutPage() {
               </div>
             ))}
           </dl>
-        </Reveal>
+        </div>
       </div>
     </Container>
   );

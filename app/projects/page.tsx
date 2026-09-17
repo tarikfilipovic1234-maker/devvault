@@ -9,7 +9,7 @@ import type { SortKey } from "@/components/projects/ProjectFilters";
 export const metadata: Metadata = pageMetadata({
   title: "Projects",
   description:
-    "Real, deployed full-stack projects — booking engines, multi-tenant SaaS, e-commerce and more. Search, filter and explore.",
+    "Full-stack projects by Tarik Filipović: booking engines, multi-tenant SaaS, Stripe storefronts and a vehicle-import calculator.",
   path: "/projects",
 });
 
@@ -34,16 +34,15 @@ export default async function ProjectsPage({
   const initialSort: SortKey = sp.sort === "featured" ? "featured" : "newest";
 
   return (
-    <Container className="py-20 sm:py-28">
-      <header className="mb-12 max-w-2xl">
-        <p className="eyebrow mb-4">Selected work</p>
-        <h1 className="font-display text-4xl font-semibold tracking-tight sm:text-5xl">
+    <Container className="py-16 sm:py-24">
+      <header className="mb-10 max-w-2xl">
+        <p className="eyebrow mb-3">Selected work</p>
+        <h1 className="font-display text-3xl font-semibold tracking-tight sm:text-4xl">
           Projects
         </h1>
-        <p className="mt-4 text-lg leading-8 text-muted">
-          A collection of products I&apos;ve designed and built — most are live,
-          with source on GitHub. Search by name or tech, filter by category, or
-          sort.
+        <p className="mt-4 leading-7 text-muted">
+          Everything I&apos;ve designed and built, with the source public on
+          GitHub. Search by name or technology, or filter by category.
         </p>
       </header>
 

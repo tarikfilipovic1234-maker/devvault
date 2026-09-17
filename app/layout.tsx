@@ -5,7 +5,6 @@ import { site } from "@/content/site";
 import { baseUrl } from "@/lib/seo";
 import { Navbar } from "@/components/layout/Navbar";
 import { Footer } from "@/components/layout/Footer";
-import { Background } from "@/components/backgrounds/Background";
 
 const sora = Sora({
   variable: "--font-sora",
@@ -28,7 +27,7 @@ const geistMono = Geist_Mono({
 export const metadata: Metadata = {
   metadataBase: new URL(baseUrl),
   title: {
-    default: `${site.name} · ${site.role}`,
+    default: `${site.name}, ${site.role}`,
     template: `%s · ${site.name}`,
   },
   description: site.summary,
@@ -38,7 +37,7 @@ export const metadata: Metadata = {
     "Next.js",
     "React",
     "TypeScript",
-    "Portfolio",
+    "Sarajevo",
   ],
   authors: [{ name: site.name, url: site.social.github }],
   creator: site.name,
@@ -47,12 +46,12 @@ export const metadata: Metadata = {
     locale: "en_US",
     url: baseUrl,
     siteName: site.name,
-    title: `${site.name} · ${site.role}`,
+    title: `${site.name}, ${site.role}`,
     description: site.summary,
   },
   twitter: {
     card: "summary_large_image",
-    title: `${site.name} · ${site.role}`,
+    title: `${site.name}, ${site.role}`,
     description: site.summary,
   },
   robots: { index: true, follow: true },
@@ -66,19 +65,18 @@ export default function RootLayout({
       lang="en"
       className={`${sora.variable} ${geistSans.variable} ${geistMono.variable}`}
     >
-      <body className="min-h-screen antialiased">
+      <body className="flex min-h-screen flex-col antialiased">
         <a
           href="#main"
-          className="sr-only focus:not-sr-only focus:fixed focus:left-4 focus:top-4 focus:z-[100] focus:rounded-lg focus:bg-accent focus:px-4 focus:py-2 focus:text-white"
+          className="sr-only focus:not-sr-only focus:fixed focus:left-4 focus:top-4 focus:z-[100] focus:rounded-md focus:bg-accent focus:px-4 focus:py-2 focus:font-medium focus:text-accent-ink"
         >
           Skip to content
         </a>
-        <Background />
         <Navbar />
-        <div id="main" className="flex min-h-screen flex-col pt-16">
-          <div className="flex-1">{children}</div>
-          <Footer />
-        </div>
+        <main id="main" className="flex-1 pt-16">
+          {children}
+        </main>
+        <Footer />
       </body>
     </html>
   );

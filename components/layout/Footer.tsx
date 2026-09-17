@@ -13,18 +13,17 @@ export function Footer() {
   ];
 
   return (
-    <footer className="relative mt-24 border-t border-line">
+    <footer className="border-t border-line">
       <Container className="py-14">
         <div className="flex flex-col gap-10 md:flex-row md:items-start md:justify-between">
           <div className="max-w-sm">
-            <p className="font-display text-lg font-semibold tracking-tight">
+            <p className="font-display text-base font-semibold tracking-tight">
               {site.name}
             </p>
             <p className="mt-3 text-sm leading-6 text-muted">
-              {site.role} — building production-grade web apps with Next.js,
-              React and TypeScript.
+              {site.role} in {site.location}, open to new roles.
             </p>
-            <div className="mt-5 flex items-center gap-3">
+            <div className="mt-5 flex items-center gap-2">
               {socials.map(({ label, href, Icon }) => (
                 <a
                   key={label}
@@ -32,16 +31,16 @@ export function Footer() {
                   target={href.startsWith("http") ? "_blank" : undefined}
                   rel={href.startsWith("http") ? "noopener noreferrer" : undefined}
                   aria-label={label}
-                  className="glass flex h-10 w-10 items-center justify-center rounded-lg text-muted transition-colors hover:text-accent"
+                  className="flex h-9 w-9 items-center justify-center rounded-md border border-line text-muted transition-colors hover:border-line-strong hover:text-foreground"
                 >
-                  <Icon />
+                  <Icon width={17} height={17} />
                 </a>
               ))}
             </div>
           </div>
 
           <nav aria-label="Footer">
-            <ul className="grid grid-cols-2 gap-x-12 gap-y-2 text-sm sm:grid-cols-3">
+            <ul className="grid grid-cols-2 gap-x-12 gap-y-2.5 text-sm sm:grid-cols-3">
               {navItems.map((item) => (
                 <li key={item.href}>
                   <Link
@@ -56,10 +55,9 @@ export function Footer() {
           </nav>
         </div>
 
-        <div className="mt-12 flex flex-col gap-2 border-t border-line pt-6 text-xs text-faint sm:flex-row sm:items-center sm:justify-between">
-          <p>© {year} {site.name}. All rights reserved.</p>
-          <p className="font-mono">Built with Next.js 16 · React 19 · Tailwind v4</p>
-        </div>
+        <p className="mt-12 border-t border-line pt-6 text-xs text-faint">
+          © {year} {site.name}
+        </p>
       </Container>
     </footer>
   );

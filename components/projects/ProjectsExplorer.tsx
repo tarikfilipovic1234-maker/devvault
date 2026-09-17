@@ -4,13 +4,12 @@ import { useEffect, useMemo, useState } from "react";
 import type { Project, ProjectCategory } from "@/lib/types";
 import { ProjectCard } from "./ProjectCard";
 import { ProjectFilters, type SortKey } from "./ProjectFilters";
-import { Stagger, StaggerItem } from "@/components/motion/Reveal";
 
 /**
  * Client-side projects showcase: search + category filter + sort over the full
  * project list. Initial state comes from the server (parsed from the URL), and
  * subsequent changes are mirrored back into the URL (?q=&category=&sort=) via
- * history.replaceState — shareable, and cheap (no RSC refetch per keystroke).
+ * history.replaceState, shareable, and cheap (no RSC refetch per keystroke).
  */
 export function ProjectsExplorer({
   projects,
@@ -81,18 +80,13 @@ export function ProjectsExplorer({
       </p>
 
       {filtered.length > 0 ? (
-        <Stagger
-          key={`${category}-${sort}-${query}`}
-          className="grid gap-6 sm:grid-cols-2 lg:grid-cols-3"
-        >
+        <div className="grid gap-6 sm:grid-cols-2 lg:grid-cols-3">
           {filtered.map((project) => (
-            <StaggerItem key={project.slug}>
-              <ProjectCard project={project} />
-            </StaggerItem>
+            <ProjectCard key={project.slug} project={project} />
           ))}
-        </Stagger>
+        </div>
       ) : (
-        <div className="glass flex flex-col items-center gap-4 rounded-2xl px-6 py-16 text-center">
+        <div className="panel flex flex-col items-center gap-4 rounded-lg px-6 py-16 text-center">
           <p className="text-muted">No projects match your filters.</p>
           <button
             type="button"
@@ -101,7 +95,7 @@ export function ProjectsExplorer({
               setCategory("all");
               setSort("newest");
             }}
-            className="text-sm font-medium text-accent transition-colors hover:text-accent-soft"
+            className="text-sm font-medium text-accent-soft transition-colors hover:text-accent"
           >
             Clear filters
           </button>

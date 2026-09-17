@@ -2,7 +2,7 @@ import { projects } from "@/content/projects";
 import type { Project, ProjectCategory } from "@/lib/types";
 
 /**
- * Data-access layer for projects — the single seam between the app and the
+ * Data-access layer for projects, the single seam between the app and the
  * content source. Today it reads from typed content files; later these
  * functions can be backed by Prisma/Neon without changing any callers.
  *

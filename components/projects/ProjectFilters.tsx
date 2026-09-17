@@ -35,16 +35,16 @@ export function ProjectFilters({
     <div className="flex flex-col gap-5">
       {/* Search */}
       <div className="relative max-w-md">
-        <span className="pointer-events-none absolute left-3.5 top-1/2 -translate-y-1/2 text-faint">
+        <span className="pointer-events-none absolute left-3 top-1/2 -translate-y-1/2 text-faint">
           <SearchIcon />
         </span>
         <input
           type="search"
           value={query}
           onChange={(e) => onQueryChange(e.target.value)}
-          placeholder="Search projects, tech…"
+          placeholder="Search by name or technology"
           aria-label="Search projects"
-          className="glass h-11 w-full rounded-xl pl-11 pr-4 text-sm text-foreground placeholder:text-faint focus-visible:border-accent/40"
+          className="h-10 w-full rounded-md border border-line bg-surface pl-10 pr-4 text-base sm:text-sm text-foreground placeholder:text-faint transition-colors focus-visible:border-accent"
         />
       </div>
 
@@ -60,10 +60,10 @@ export function ProjectFilters({
                 onClick={() => onCategoryChange(cat)}
                 aria-pressed={active}
                 className={cn(
-                  "rounded-full border px-3.5 py-1.5 text-sm transition-colors",
+                  "rounded-md border px-3 py-1.5 text-sm transition-colors",
                   active
-                    ? "border-accent/40 bg-accent/15 text-accent-soft"
-                    : "border-line text-muted hover:border-line hover:text-foreground hover:bg-white/[0.03]",
+                    ? "border-accent/40 bg-accent/10 text-accent-soft"
+                    : "border-line text-muted hover:border-line-strong hover:text-foreground",
                 )}
               >
                 {cat === "all" ? "All" : cat}
@@ -73,7 +73,7 @@ export function ProjectFilters({
         </div>
 
         {/* Sort */}
-        <div className="glass inline-flex rounded-xl p-1" role="group" aria-label="Sort projects">
+        <div className="inline-flex self-start rounded-md border border-line bg-surface p-0.5" role="group" aria-label="Sort projects">
           {sorts.map((s) => {
             const active = s.key === sort;
             return (
@@ -83,9 +83,9 @@ export function ProjectFilters({
                 onClick={() => onSortChange(s.key)}
                 aria-pressed={active}
                 className={cn(
-                  "rounded-lg px-3 py-1.5 text-sm transition-colors",
+                  "rounded-sm px-3 py-1 text-sm transition-colors",
                   active
-                    ? "bg-white/[0.06] text-foreground"
+                    ? "bg-raised text-foreground"
                     : "text-muted hover:text-foreground",
                 )}
               >

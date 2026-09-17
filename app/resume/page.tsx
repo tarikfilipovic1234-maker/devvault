@@ -18,15 +18,15 @@ export default function ResumePage() {
   const work = experience.filter((e) => e.kind !== "highlight");
 
   return (
-    <Container className="py-20 sm:py-28">
+    <Container className="py-16 sm:py-24">
       <header className="mb-12 flex flex-col gap-6 sm:flex-row sm:items-end sm:justify-between">
         <div className="max-w-2xl">
-          <p className="eyebrow mb-4">Resume</p>
-          <h1 className="font-display text-4xl font-semibold tracking-tight sm:text-5xl">
+          <p className="eyebrow mb-3">Resume</p>
+          <h1 className="font-display text-3xl font-semibold tracking-tight sm:text-4xl">
             {site.name}
           </h1>
-          <p className="mt-3 text-lg text-muted">
-            {site.role} · {site.location}
+          <p className="mt-3 text-muted">
+            {site.role}, {site.location}
           </p>
         </div>
         <Button href={site.cvPath}>
@@ -38,7 +38,7 @@ export default function ResumePage() {
         {/* Text summary */}
         <div className="flex flex-col gap-10">
           <section>
-            <h2 className="font-display text-xl font-semibold tracking-tight">
+            <h2 className="font-display text-lg font-semibold tracking-tight">
               Experience &amp; education
             </h2>
             <ul className="mt-5 space-y-6">
@@ -60,7 +60,7 @@ export default function ResumePage() {
           </section>
 
           <section>
-            <h2 className="font-display text-xl font-semibold tracking-tight">
+            <h2 className="font-display text-lg font-semibold tracking-tight">
               Skills
             </h2>
             <div className="mt-5 space-y-4">
@@ -81,13 +81,24 @@ export default function ResumePage() {
         </div>
 
         {/* PDF preview */}
-        <aside>
-          <div className="glass sticky top-24 overflow-hidden rounded-2xl p-3">
+        <aside className="hidden lg:block">
+          <div className="panel sticky top-24 overflow-hidden rounded-lg p-2">
             <iframe
               src={`${site.cvPath}#view=FitH`}
               title={`${site.name} CV`}
-              className="h-[640px] w-full rounded-xl bg-white"
+              className="h-[640px] w-full rounded-md bg-white"
             />
+            <p className="px-2 py-3 text-xs text-faint">
+              Not seeing the document?{" "}
+              <a
+                href={site.cvPath}
+                download
+                className="text-accent-soft underline underline-offset-2 hover:text-accent"
+              >
+                Download the PDF
+              </a>
+              .
+            </p>
           </div>
         </aside>
       </div>

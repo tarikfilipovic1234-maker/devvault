@@ -3,7 +3,6 @@ import { site } from "@/content/site";
 import { pageMetadata } from "@/lib/seo";
 import { Container } from "@/components/ui/Container";
 import { Button } from "@/components/ui/Button";
-import { GradientText } from "@/components/ui/GradientText";
 import { ContactForm } from "@/components/contact/ContactForm";
 import {
   DownloadIcon,
@@ -20,45 +19,64 @@ export const metadata: Metadata = pageMetadata({
 
 export default function ContactPage() {
   const channels = [
-    { label: "Email", value: site.social.email, href: `mailto:${site.social.email}`, Icon: MailIcon },
-    { label: "GitHub", value: "tarikfilipovic1234-maker", href: site.social.github, Icon: GitHubIcon },
-    { label: "LinkedIn", value: "Tarik Filipović", href: site.social.linkedin, Icon: LinkedInIcon },
+    {
+      label: "Email",
+      value: site.social.email,
+      href: `mailto:${site.social.email}`,
+      Icon: MailIcon,
+    },
+    {
+      label: "GitHub",
+      value: "tarikfilipovic1234-maker",
+      href: site.social.github,
+      Icon: GitHubIcon,
+    },
+    {
+      label: "LinkedIn",
+      value: "Tarik Filipović",
+      href: site.social.linkedin,
+      Icon: LinkedInIcon,
+    },
   ];
 
   return (
-    <Container className="py-20 sm:py-28">
+    <Container className="py-16 sm:py-24">
       <header className="mb-12 max-w-2xl">
-        <p className="eyebrow mb-4">Contact</p>
-        <h1 className="font-display text-4xl font-semibold tracking-tight sm:text-5xl">
-          Let&apos;s <GradientText>work together</GradientText>.
+        <p className="eyebrow mb-3">Contact</p>
+        <h1 className="font-display text-3xl font-semibold tracking-tight sm:text-4xl">
+          Get in touch
         </h1>
-        <p className="mt-4 text-lg leading-8 text-muted">
-          Got a role, project, or just a question? Send a message and I&apos;ll
-          get back to you. Prefer email or socials? Those work too.
+        <p className="mt-4 leading-7 text-muted">
+          Send a message about a role, a project or a question and I&apos;ll
+          reply from my own inbox. Email and the links below work just as well.
         </p>
       </header>
 
-      <div className="grid gap-12 lg:grid-cols-[1fr_360px] lg:gap-16">
+      <div className="grid gap-12 lg:grid-cols-[minmax(0,1fr)_320px] lg:gap-16">
         <ContactForm />
 
-        <aside className="flex flex-col gap-6">
-          <div className="glass flex flex-col gap-1 rounded-2xl p-6">
+        <aside className="flex flex-col gap-4">
+          <div className="panel rounded-lg p-5">
             <p className="eyebrow mb-3">Reach me directly</p>
-            <ul className="flex flex-col gap-1">
+            <ul className="flex flex-col">
               {channels.map(({ label, value, href, Icon }) => (
                 <li key={label}>
                   <a
                     href={href}
                     target={href.startsWith("http") ? "_blank" : undefined}
-                    rel={href.startsWith("http") ? "noopener noreferrer" : undefined}
-                    className="group flex items-center gap-3 rounded-xl px-2 py-2.5 transition-colors hover:bg-white/[0.03]"
+                    rel={
+                      href.startsWith("http") ? "noopener noreferrer" : undefined
+                    }
+                    className="group flex items-center gap-3 rounded-md px-2 py-2.5 transition-colors hover:bg-raised"
                   >
-                    <span className="flex h-10 w-10 items-center justify-center rounded-lg border border-line text-muted transition-colors group-hover:text-accent">
-                      <Icon />
+                    <span className="flex h-9 w-9 shrink-0 items-center justify-center rounded-md border border-line text-muted transition-colors group-hover:text-foreground">
+                      <Icon width={17} height={17} />
                     </span>
-                    <span className="flex flex-col">
+                    <span className="flex min-w-0 flex-col">
                       <span className="text-xs text-faint">{label}</span>
-                      <span className="text-sm text-foreground">{value}</span>
+                      <span className="truncate text-sm text-foreground">
+                        {value}
+                      </span>
                     </span>
                   </a>
                 </li>
@@ -66,7 +84,7 @@ export default function ContactPage() {
             </ul>
           </div>
 
-          <div className="glass flex flex-col items-start gap-3 rounded-2xl p-6">
+          <div className="panel flex flex-col items-start gap-3 rounded-lg p-5">
             <p className="text-sm text-muted">
               Want the short version of my background?
             </p>

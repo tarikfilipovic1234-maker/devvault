@@ -5,25 +5,22 @@ type Variant = "primary" | "secondary" | "ghost";
 type Size = "sm" | "md";
 
 const base =
-  "inline-flex items-center justify-center gap-2 rounded-full font-medium tracking-tight " +
-  "transition-all duration-200 focus-visible:outline-2 focus-visible:outline-accent " +
+  "inline-flex items-center justify-center gap-2 rounded-md font-medium tracking-tight " +
+  "transition-colors duration-150 focus-visible:outline-2 focus-visible:outline-accent " +
   "focus-visible:outline-offset-2 disabled:cursor-not-allowed disabled:opacity-50";
 
 const sizes: Record<Size, string> = {
   sm: "h-9 px-4 text-sm",
-  md: "h-12 px-6 text-[0.95rem]",
+  md: "h-11 px-5 text-sm",
 };
 
 const variants: Record<Variant, string> = {
-  // Electric-blue → violet gradient with a soft glow on hover.
-  primary:
-    "bg-gradient-to-r from-accent to-violet text-white shadow-[0_8px_30px_-8px] shadow-accent/60 " +
-    "hover:shadow-[0_10px_40px_-6px] hover:shadow-accent/70 hover:brightness-110 active:scale-[0.98]",
-  // Glass outline.
+  // Solid accent with dark text, high contrast, no gradient.
+  primary: "bg-accent text-accent-ink hover:bg-accent-soft",
+  // Outlined surface.
   secondary:
-    "glass text-foreground hover:border-accent/40 hover:text-white active:scale-[0.98]",
-  ghost:
-    "text-muted hover:text-foreground hover:bg-white/5 active:scale-[0.98]",
+    "panel text-foreground hover:border-line-strong hover:bg-raised",
+  ghost: "text-muted hover:bg-raised hover:text-foreground",
 };
 
 type CommonProps = {
@@ -61,7 +58,7 @@ export function Button(props: ButtonAsLink | ButtonAsButton) {
         </a>
       );
     }
-    // Static files (e.g. the CV PDF) — plain anchor so the browser downloads
+    // Static files (e.g. the CV PDF), plain anchor so the browser downloads
     // it instead of attempting client-side route navigation.
     if (/\.[a-z0-9]+$/i.test(props.href)) {
       return (

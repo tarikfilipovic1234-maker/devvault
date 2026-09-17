@@ -1,8 +1,8 @@
 import { cn } from "@/lib/utils";
 
 /**
- * Glassmorphism card. Set `interactive` for hover lift + accent edge,
- * used by linked cards (e.g. project cards).
+ * Flat surface panel. Set `interactive` for the hover treatment used by
+ * linked cards (e.g. project cards): the border firms up, nothing moves.
  */
 export function Card({
   interactive = false,
@@ -16,10 +16,9 @@ export function Card({
   return (
     <div
       className={cn(
-        "glass rounded-2xl",
+        "panel rounded-lg",
         interactive &&
-          "transition-all duration-300 hover:-translate-y-1 hover:border-accent/40 " +
-            "hover:shadow-[0_30px_70px_-30px] hover:shadow-accent/40",
+          "transition-colors duration-150 hover:border-line-strong",
         className,
       )}
     >

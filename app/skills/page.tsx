@@ -3,55 +3,47 @@ import { skillCategories } from "@/content/skills";
 import { pageMetadata } from "@/lib/seo";
 import { Container } from "@/components/ui/Container";
 import { Card } from "@/components/ui/Card";
-import { Stagger, StaggerItem } from "@/components/motion/Reveal";
 
 export const metadata: Metadata = pageMetadata({
   title: "Skills",
   description:
-    "The technologies I work with — languages, frontend, backend, databases, auth, cloud and tooling.",
+    "Languages, frameworks, databases, authentication, cloud services and tooling I work with.",
   path: "/skills",
 });
 
 export default function SkillsPage() {
   return (
-    <Container className="py-20 sm:py-28">
-      <header className="mb-14 max-w-2xl">
-        <p className="eyebrow mb-4">Toolkit</p>
-        <h1 className="font-display text-4xl font-semibold tracking-tight sm:text-5xl">
-          Skills &amp; technologies
+    <Container className="py-16 sm:py-24">
+      <header className="mb-12 max-w-2xl">
+        <p className="eyebrow mb-3">Toolkit</p>
+        <h1 className="font-display text-3xl font-semibold tracking-tight sm:text-4xl">
+          Skills and technologies
         </h1>
-        <p className="mt-4 text-lg leading-8 text-muted">
-          The stack behind my projects — chosen for shipping real, maintainable
-          products front to back.
+        <p className="mt-4 leading-7 text-muted">
+          Everything listed here is something I have used to build and ship one
+          of the projects on this site.
         </p>
       </header>
 
-      <Stagger className="grid gap-5 sm:grid-cols-2 lg:grid-cols-3">
-        {skillCategories.map((category, i) => (
-          <StaggerItem key={category.name}>
-            <Card className="group h-full p-6">
-              <div className="mb-5 flex items-center justify-between">
-                <h2 className="font-display text-lg font-semibold tracking-tight">
-                  {category.name}
-                </h2>
-                <span className="font-mono text-xs text-faint">
-                  {String(i + 1).padStart(2, "0")}
-                </span>
-              </div>
-              <ul className="flex flex-wrap gap-2">
-                {category.skills.map((skill) => (
-                  <li
-                    key={skill}
-                    className="rounded-lg border border-line bg-white/[0.03] px-3 py-1.5 text-sm text-muted transition-colors group-hover:border-accent/20"
-                  >
-                    {skill}
-                  </li>
-                ))}
-              </ul>
-            </Card>
-          </StaggerItem>
+      <div className="grid gap-4 sm:grid-cols-2 lg:grid-cols-3">
+        {skillCategories.map((category) => (
+          <Card key={category.name} className="h-full p-5">
+            <h2 className="font-display text-base font-semibold tracking-tight">
+              {category.name}
+            </h2>
+            <ul className="mt-4 flex flex-wrap gap-1.5">
+              {category.skills.map((skill) => (
+                <li
+                  key={skill}
+                  className="rounded-sm border border-line bg-raised px-2 py-1 text-xs text-muted"
+                >
+                  {skill}
+                </li>
+              ))}
+            </ul>
+          </Card>
         ))}
-      </Stagger>
+      </div>
     </Container>
   );
 }
