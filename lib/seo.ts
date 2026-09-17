@@ -24,10 +24,29 @@ export function pageMetadata({
     description: desc,
     alternates: { canonical: url },
     openGraph: {
-      title: title ? `${title} · ${site.name}` : `${site.name} · ${site.role}`,
+      title: title ? `${title} · ${site.name}` : `${site.name}, ${site.role}`,
       description: desc,
       url,
       type: "website",
     },
   };
 }
+
+/**
+ * schema.org Person markup for the site owner. Every field is sourced from
+ * `content/site.ts`, so it never states anything the site does not.
+ */
+export const personJsonLd = {
+  "@context": "https://schema.org",
+  "@type": "Person",
+  name: site.name,
+  jobTitle: site.role,
+  url: baseUrl,
+  email: `mailto:${site.social.email}`,
+  address: {
+    "@type": "PostalAddress",
+    addressLocality: "Sarajevo",
+    addressCountry: "BA",
+  },
+  sameAs: [site.social.github, site.social.linkedin],
+} as const;

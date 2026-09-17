@@ -4,6 +4,11 @@ import { Container } from "@/components/ui/Container";
 import { GitHubIcon, LinkedInIcon, MailIcon } from "@/components/ui/icons";
 import { navItems } from "./nav-items";
 
+const legalItems = [
+  { label: "Privacy", href: "/privacy" },
+  { label: "Terms", href: "/terms" },
+];
+
 export function Footer() {
   const year = new Date().getFullYear();
   const socials = [
@@ -41,7 +46,7 @@ export function Footer() {
 
           <nav aria-label="Footer">
             <ul className="grid grid-cols-2 gap-x-12 gap-y-2.5 text-sm sm:grid-cols-3">
-              {navItems.map((item) => (
+              {[...navItems, ...legalItems].map((item) => (
                 <li key={item.href}>
                   <Link
                     href={item.href}
