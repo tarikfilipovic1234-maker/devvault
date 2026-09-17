@@ -4,6 +4,7 @@ import { Resend } from "resend";
 import { site } from "@/content/site";
 import {
   contactSchema,
+  HONEYPOT_FIELD,
   type ContactState,
 } from "@/lib/validation";
 
@@ -14,9 +15,10 @@ const FROM_EMAIL =
   process.env.CONTACT_FROM_EMAIL ?? "Portfolio <onboarding@resend.dev>";
 
 /**
- * Handles a contact-form submission. Validates with zod, then emails via Resend
- * when RESEND_API_KEY is set. If the key is absent, it validates and no-ops
- * cleanly (returns success) so the site runs and deploys without secrets.
+ * Handles a contact-form submission. Validates with zod, then emails via
+ * Resend. If RESEND_API_KEY is absent the action reports `unavailable` rather
+ * than claiming success, so the visitor is never told a message was delivered
+ * when nothing was sent.
  */
 export async function submitContact(
   _prev: ContactState,
@@ -26,10 +28,15 @@ export async function submitContact(
     name: String(formData.get("name") ?? ""),
     email: String(formData.get("email") ?? ""),
     message: String(formData.get("message") ?? ""),
-    company: String(formData.get("company") ?? ""),
   };
 
-  const values = { name: raw.name, email: raw.email, message: raw.message };
+  const values = { ...raw };
+
+  // Honeypot: checked before validation, because a filled honeypot must never
+  // produce a visible field error the sender cannot act on.
+  if (String(formData.get(HONEYPOT_FIELD) ?? "").trim()) {
+    return { status: "success", message: "Thanks. I'll be in touch soon." };
+  }
 
   const parsed = contactSchema.safeParse(raw);
   if (!parsed.success) {
@@ -41,22 +48,16 @@ export async function submitContact(
     };
   }
 
-  // Honeypot tripped — pretend success without sending.
-  if (parsed.data.company) {
-    return { status: "success", message: "Thanks! I'll be in touch soon." };
-  }
-
   const { name, email, message } = parsed.data;
   const apiKey = process.env.RESEND_API_KEY;
 
   if (!apiKey) {
-    // No key configured: validate-only fallback so the form still works.
-    console.warn(
-      "[contact] RESEND_API_KEY not set — skipping send (fallback mode).",
-    );
+    console.warn("[contact] RESEND_API_KEY not set; cannot deliver message.");
     return {
-      status: "success",
-      message: "Thanks! Your message was received.",
+      status: "unavailable",
+      message:
+        "The contact form isn't connected to an inbox on this deployment.",
+      values,
     };
   }
 
@@ -74,12 +75,13 @@ export async function submitContact(
       console.error("[contact] Resend error:", error);
       return {
         status: "error",
-        message: "Something went wrong sending your message. Please email me directly.",
+        message:
+          "Something went wrong sending your message. Please email me directly.",
         values,
       };
     }
 
-    return { status: "success", message: "Thanks! I'll be in touch soon." };
+    return { status: "success", message: "Thanks. I'll be in touch soon." };
   } catch (err) {
     console.error("[contact] Unexpected error:", err);
     return {

@@ -2,9 +2,10 @@
 
 import { useActionState } from "react";
 import { submitContact } from "@/lib/actions/contact";
-import { initialContactState } from "@/lib/validation";
+import { HONEYPOT_FIELD, initialContactState } from "@/lib/validation";
+import { site } from "@/content/site";
 import { cn } from "@/lib/utils";
-import { ArrowIcon } from "@/components/ui/icons";
+import { ArrowIcon, MailIcon } from "@/components/ui/icons";
 
 const fieldBase =
   "w-full rounded-md border border-line bg-surface px-3.5 py-2.5 text-base sm:text-sm text-foreground " +
@@ -38,6 +39,35 @@ export function ContactForm() {
           Message sent
         </h2>
         <p className="text-muted">{state.message}</p>
+      </div>
+    );
+  }
+
+  // Delivery is not configured on this deployment. Say so plainly and hand the
+  // visitor a mailto link carrying everything they already typed.
+  if (state.status === "unavailable") {
+    const body = encodeURIComponent(
+      `${state.values?.message ?? ""}\n\n${state.values?.name ?? ""}\n${
+        state.values?.email ?? ""
+      }`,
+    );
+    return (
+      <div className="panel flex flex-col items-start gap-4 rounded-lg p-8">
+        <h2 className="font-display text-lg font-semibold tracking-tight">
+          Send this by email instead
+        </h2>
+        <p className="max-w-md leading-7 text-muted">
+          {state.message} Your message hasn&apos;t been delivered. Opening it in
+          your email client will keep everything you typed.
+        </p>
+        <a
+          href={`mailto:${site.social.email}?subject=${encodeURIComponent(
+            "Portfolio enquiry",
+          )}&body=${body}`}
+          className="inline-flex h-11 items-center gap-2 rounded-md bg-accent px-5 text-sm font-medium text-accent-ink transition-colors hover:bg-accent-soft"
+        >
+          <MailIcon width={17} height={17} /> Email {site.social.email}
+        </a>
       </div>
     );
   }
@@ -80,7 +110,12 @@ export function ContactForm() {
       <div aria-hidden className="hidden">
         <label>
           Company
-          <input name="company" tabIndex={-1} autoComplete="off" />
+          <input
+            name={HONEYPOT_FIELD}
+            type="text"
+            tabIndex={-1}
+            autoComplete="off"
+          />
         </label>
       </div>
 
